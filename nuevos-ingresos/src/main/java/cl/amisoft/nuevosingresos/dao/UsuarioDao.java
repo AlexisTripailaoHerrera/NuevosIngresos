@@ -42,4 +42,25 @@ public class UsuarioDao {
         return "Usuario creado exitosamente";
     }
 
+    public String actualizarUsuario (Long id, String nuevoNombre, String nuevoApellido, Long nuevoRut,
+                                     Character nuevoDv, String nombreModificador, String apellidoModificador,
+                                     Long rutModificador, Character rutDvModificador, Long idModificador){
+        Usuario usuario = em.find(Usuario.class, id);
+        if(usuario != null){
+            usuario.setNombreUsuario(nuevoNombre);
+            usuario.setApellidoUsuario(nuevoApellido);
+            usuario.setRut(nuevoRut);
+            usuario.setRutDV(nuevoDv);
+            usuario.setNombreModificacion(nombreModificador);
+            usuario.setApellidoModificacion(apellidoModificador);
+            usuario.setRutMod(rutModificador);
+            usuario.setRutDvMod(rutDvModificador);
+            usuario.setIdMod(idModificador);
+            em.merge(usuario);
+            return "Usuario actualizado correctamente";
+        }else{
+            return "No se encontró el usuario";
+        }
+    }
+
 }

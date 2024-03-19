@@ -53,9 +53,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public String crearUsuario(String nombre, String apellido, Long rut, char rutDv, String username, String password, Long idCreador, String nombreCreador, String apellidoCreador, Long rutCreador, Character rutDvCreador) {
+    public String crearUsuario(String nombre, String apellido, Long rut, Character rutDv, String username,
+                               String password, Long idCreador, String nombreCreador, String apellidoCreador, Long rutCreador, Character rutDvCreador) {
         usuarioDao.crearUsuario(nombre, apellido, rut, rutDv, username, password, idCreador, nombreCreador, apellidoCreador, rutCreador, rutDvCreador);
         return "Usuario creado exitosamente";
+    }
+
+    @Override
+    @Transactional
+    public String actualizarUsuario (Long id, String nuevoNombre, String nuevoApellido, Long nuevoRut,
+                                     Character nuevoDv, String nombreModificador, String apellidoModificador, Long rutModificador,
+                                     Character rutDvModificador, Long idModificador){
+        usuarioDao.actualizarUsuario(id, nuevoNombre, nuevoApellido, nuevoRut, nuevoDv, nombreModificador, apellidoModificador, rutModificador,
+                rutDvModificador, idModificador);
+        return "Usuario actualizado correctamente";
     }
 }
 

@@ -1,5 +1,6 @@
 package cl.amisoft.nuevosingresos.controller;
 
+import cl.amisoft.nuevosingresos.dto.UsuarioActualizarRequest;
 import cl.amisoft.nuevosingresos.dto.UsuarioCrearRequest;
 import cl.amisoft.nuevosingresos.service.UsuarioService;
 import cl.amisoft.nuevosingresos.vo.UsuarioVo;
@@ -30,6 +31,13 @@ public class UsuarioController {
                 request.getRutDv(), request.getUsername(), request.getPassword(),
                 request.getIdCreador(), request.getNombreCreador(), request.getApellidoCreador(), request.getRutCreador(), request.getRutDvCreador());
         return "Usuario creado exitosamente";
+    }
+
+    @PutMapping(consumes = "application/json")
+    public String actualizarUsuario(@RequestBody UsuarioActualizarRequest request) {
+        usuarioService.actualizarUsuario(request.getId(), request.getNuevoNombre(), request.getNuevoApellido(), request.getNuevoRut(), request.getNuevoDv(),
+                request.getNombreModificador(), request.getApellidoModificador(), request.getRutModificador(), request.getRutDvModificador(), request.getIdModificador());
+        return "Usuario actualizado correctamente";
     }
 }
 
