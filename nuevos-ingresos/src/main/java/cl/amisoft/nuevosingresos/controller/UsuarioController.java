@@ -26,7 +26,9 @@ public class UsuarioController {
 
     @PostMapping(consumes = "application/json")
     public String crearUsuario(@RequestBody UsuarioCrearRequest request) {
-        usuarioService.crearUsuario(request.getNombre(), request.getApellido(), request.getRut(), request.getRutDv());
+        usuarioService.crearUsuario(request.getNombre(), request.getApellido(), request.getRut(),
+                request.getRutDv(), request.getUsername(), request.getPassword(),
+                request.getIdCreador(), request.getNombreCreador(), request.getApellidoCreador(), request.getRutCreador(), request.getRutDvCreador());
         return "Usuario creado exitosamente";
     }
 }

@@ -23,12 +23,21 @@ public class UsuarioDao {
         return Collections.emptyList();
     }
 
-    public String crearUsuario(String nombre, String apellido, Long rut, char rutDv) {
+    public String crearUsuario(String nombre, String apellido, Long rut, char rutDv, String username, String password,
+                               Long idCreador, String nombreCreador, String apellidoCreador, Long rutCreador,
+                               Character rutDvCreador) {
         Usuario usuario = new Usuario();
         usuario.setNombreUsuario(nombre);
         usuario.setApellidoUsuario(apellido);
         usuario.setRut(rut);
         usuario.setRutDV(rutDv);
+        usuario.setUsername(username);
+        usuario.setPassword(password);
+        usuario.setIdCreador(idCreador);
+        usuario.setNombreCreador(nombreCreador);
+        usuario.setApellidoCreador(apellidoCreador);
+        usuario.setRutCreador(rutCreador);
+        usuario.setRutDvCreador(rutDvCreador);
         em.persist(usuario);
         return "Usuario creado exitosamente";
     }

@@ -30,9 +30,16 @@ public class UsuarioServiceImpl implements UsuarioService {
                     .id(u.getId())
                     .nombreUsuario(u.getNombreUsuario())
                     .apellidoUsuario(u.getApellidoUsuario())
-                    .fechaCreacion(u.getFechaCreacion())
                     .rut(u.getRut())
                     .rutDV(u.getRutDV())
+                    .username(u.getUsername())
+                    .password(u.getPassword())
+                    .fechaCreacion(u.getFechaCreacion())
+                    .idCreador(u.getIdCreador())
+                    .nombreCreador(u.getNombreCreador())
+                    .apellidoCreador(u.getApellidoCreador())
+                    .rutCreador(u.getRutCreador())
+                    .rutDvCreador(u.getRutDvCreador())
                     .fechaModificacion(u.getFechaModificacion())
                     .nombreModificacion(u.getNombreModificacion())
                     .apellidoModificacion(u.getApellidoModificacion())
@@ -43,8 +50,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public String crearUsuario(String nombre, String apellido, Long rut, char rutDv) {
-        usuarioDao.crearUsuario(nombre, apellido, rut, rutDv);
+    public String crearUsuario(String nombre, String apellido, Long rut, char rutDv, String username, String password, Long idCreador, String nombreCreador, String apellidoCreador, Long rutCreador, Character rutDvCreador) {
+        usuarioDao.crearUsuario(nombre, apellido, rut, rutDv, username, password, idCreador, nombreCreador, apellidoCreador, rutCreador, rutDvCreador);
         return "Usuario creado exitosamente";
     }
 }
