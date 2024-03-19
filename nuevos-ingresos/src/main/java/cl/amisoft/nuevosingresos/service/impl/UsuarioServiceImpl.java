@@ -43,6 +43,9 @@ public class UsuarioServiceImpl implements UsuarioService {
                     .fechaModificacion(u.getFechaModificacion())
                     .nombreModificacion(u.getNombreModificacion())
                     .apellidoModificacion(u.getApellidoModificacion())
+                    .rutMod(u.getRutMod())
+                    .rutDvMod(u.getRutDvMod())
+                    .idMod(u.getIdMod())
                     .build()).collect(Collectors.toList());
         }
         return Collections.emptyList();

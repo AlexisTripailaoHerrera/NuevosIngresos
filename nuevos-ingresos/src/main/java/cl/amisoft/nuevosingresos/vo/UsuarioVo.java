@@ -22,6 +22,9 @@ public class UsuarioVo implements Serializable {
     private LocalDate fechaModificacion;
     private String nombreModificacion;
     private String apellidoModificacion;
+    private Long rutMod;
+    private Character rutDvMod;
+    private Long idMod;
 
     public UsuarioVo() {
     }
@@ -43,6 +46,9 @@ public class UsuarioVo implements Serializable {
         this.fechaModificacion = builder.fechaModificacion != null ? builder.fechaModificacion : LocalDate.now();
         this.nombreModificacion = builder.nombreModificacion;
         this.apellidoModificacion = builder.apellidoModificacion;
+        this.rutMod = builder.rutMod;
+        this.rutDvMod = builder.rutDvMod;
+        this.idMod = builder.idMod;
     }
 
     // Getters y Setters
@@ -175,6 +181,30 @@ public class UsuarioVo implements Serializable {
         this.apellidoModificacion = apellidoModificacion;
     }
 
+    public Long getRutMod() {
+        return rutMod;
+    }
+
+    public void setRutMod(Long rutMod) {
+        this.rutMod = rutMod;
+    }
+
+    public Character getRutDvMod() {
+        return rutDvMod;
+    }
+
+    public void setRutDvMod(Character rutDvMod) {
+        this.rutDvMod = rutDvMod;
+    }
+
+    public Long getIdMod() {
+        return idMod;
+    }
+
+    public void setIdMod(Long idMod) {
+        this.idMod = idMod;
+    }
+
     public static class Builder {
         private Long id;
         private String nombreUsuario;
@@ -192,6 +222,9 @@ public class UsuarioVo implements Serializable {
         private LocalDate fechaModificacion;
         private String nombreModificacion;
         private String apellidoModificacion;
+        private Long rutMod;
+        private Character rutDvMod;
+        private Long idMod;
 
         public Builder id(Long id) {
             this.id = id;
@@ -270,6 +303,21 @@ public class UsuarioVo implements Serializable {
 
         public Builder apellidoModificacion(String apellidoModificacion) {
             this.apellidoModificacion = apellidoModificacion;
+            return this;
+        }
+
+        public Builder rutMod(Long rutMod){
+            this.rutMod = rutMod;
+            return this;
+        }
+
+        public Builder rutDvMod(Character rutDvMod){
+            this.rutDvMod = rutDvMod;
+            return this;
+        }
+
+        public Builder idMod(Long idMod){
+            this.idMod = idMod;
             return this;
         }
 
