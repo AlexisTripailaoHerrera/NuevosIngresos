@@ -68,5 +68,13 @@ public class UsuarioServiceImpl implements UsuarioService {
                 rutDvModificador, idModificador);
         return "Usuario actualizado correctamente";
     }
+
+    @Override
+    @Transactional
+    public String eliminarUsuario (Long id, String nombreEliminador, String apellidoEliminador,
+                                   Long rutEliminador, Character rutDvEliminador){
+        usuarioDao.eliminarUsuario(id, nombreEliminador, apellidoEliminador, rutEliminador, rutDvEliminador);
+        return "Usuario eliminado correctamente";
+    }
 }
 

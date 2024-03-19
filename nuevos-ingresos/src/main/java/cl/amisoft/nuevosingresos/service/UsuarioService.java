@@ -11,4 +11,7 @@ public interface UsuarioService {
 
     String actualizarUsuario (Long id, String nuevoNombre, String nuevoApellido, Long nuevoRut, Character nuevoDv, String nombreModificador, String apellidoModificador, Long rutModificador, Character rutDvModificador, Long idModificador);
 
+    String eliminarUsuario (Long id, String nombreEliminador, String apellidoEliminador, Long rutEliminador, Character rutDvEliminador);
+
+
 }

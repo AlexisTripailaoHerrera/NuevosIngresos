@@ -2,6 +2,7 @@ package cl.amisoft.nuevosingresos.controller;
 
 import cl.amisoft.nuevosingresos.dto.UsuarioActualizarRequest;
 import cl.amisoft.nuevosingresos.dto.UsuarioCrearRequest;
+import cl.amisoft.nuevosingresos.dto.UsuariosEliminadosRequest;
 import cl.amisoft.nuevosingresos.service.UsuarioService;
 import cl.amisoft.nuevosingresos.vo.UsuarioVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,14 @@ public class UsuarioController {
                 request.getNombreModificador(), request.getApellidoModificador(), request.getRutModificador(), request.getRutDvModificador(), request.getIdModificador());
         return "Usuario actualizado correctamente";
     }
+
+    @DeleteMapping(consumes = "application/json")
+    public String eliminarUsuario (@RequestBody UsuariosEliminadosRequest request ){
+        usuarioService.eliminarUsuario(request.getId(), request.getNombreEliminador(), request.getApellidoEliminador(),
+                request.getRutEliminador(), request.getRutDvEliminador());
+        return "Usuario eliminado correctamente";
+    }
+
+
 }
 

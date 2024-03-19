@@ -5,9 +5,10 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "usuarios", schema = "actividad")
+@SequenceGenerator(name = "actividad.usuarios_id_seq", sequenceName = "actividad.usuarios_id_seq", allocationSize = 1)
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actividad.usuarios_id_seq")
     private Long id;
 
     @Column(name = "GLS_USUARIO_N")

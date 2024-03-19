@@ -1,6 +1,7 @@
 package cl.amisoft.nuevosingresos.dao;
 
 import cl.amisoft.nuevosingresos.model.Usuario;
+import cl.amisoft.nuevosingresos.model.UsuariosEliminados;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -62,5 +63,39 @@ public class UsuarioDao {
             return "No se encontró el usuario";
         }
     }
+
+    public String eliminarUsuario (Long id, String nombreEliminador, String apellidoEliminador,
+                                   Long rutEliminador, Character rutDvEliminador){
+
+        Usuario usuario = em.find(Usuario.class, id);
+
+        UsuariosEliminados usuariosEliminados = new UsuariosEliminados();
+
+        if (usuario != null) {
+            String nombreEliminado = usuario.getNombreUsuario();
+            String apellidoEliminado = usuario.getApellidoUsuario();
+            Long rutEliminado = usuario.getRut();
+            Character rutDvEliminado = usuario.getRutDV();
+            String usernameEliminado = usuario.getUsername();
+
+            usuariosEliminados.setNombreEliminado(nombreEliminado);
+            usuariosEliminados.setApellidoEliminado(apellidoEliminado);
+            usuariosEliminados.setRutEliminado(rutEliminado);
+            usuariosEliminados.setRutDvEliminado(rutDvEliminado);
+            usuariosEliminados.setUsernameEliminado(usernameEliminado);
+            usuariosEliminados.setNombreEliminador(nombreEliminador);
+            usuariosEliminados.setApellidoEliminador(apellidoEliminador);
+            usuariosEliminados.setRutEliminador(rutEliminador);
+            usuariosEliminados.setRutDvEliminador(rutDvEliminador);
+
+            em.remove(usuario);
+            em.persist(usuariosEliminados);
+
+            return "Usuario eliminado correctamente";
+        }else{
+            return "Usuario no existe";
+        }
+    }
+
 
 }
