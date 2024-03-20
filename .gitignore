@@ -1,5 +1,5 @@
 # Ignorar la carpeta llamada "borrador"
-borrador/
+borrador
 
 # Ignorar el archivo llamado "scripts.docx"
 scripts.docx
