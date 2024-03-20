@@ -1,5 +1,6 @@
 package cl.amisoft.nuevosingresos.controller;
 
+import cl.amisoft.nuevosingresos.dto.LoginRequest;
 import cl.amisoft.nuevosingresos.dto.UsuarioActualizarRequest;
 import cl.amisoft.nuevosingresos.dto.UsuarioCrearRequest;
 import cl.amisoft.nuevosingresos.dto.UsuariosEliminadosRequest;
@@ -21,12 +22,22 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    @PostMapping(consumes = "application/json")
+    public List<UsuarioVo> login(@RequestBody LoginRequest request){
+        return usuarioService.login(request.getUsername(), request.getPassword());
+    }
+
+    @GetMapping(value = "/{id}", produces = "application/json")
+    public UsuarioVo obtenerUsuario(@PathVariable(name = "id") Long id){
+        return usuarioService.obtenerUsuario(id);
+    }
+
     @GetMapping(produces = "application/json")
     public List<UsuarioVo> obtenerTodosLosUsuarios() {
         return usuarioService.obtenerTodosLosUsuarios();
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping(value = "/CrearUsuario", consumes = "application/json")
     public String crearUsuario(@RequestBody UsuarioCrearRequest request) {
         usuarioService.crearUsuario(request.getNombre(), request.getApellido(), request.getRut(),
                 request.getRutDv(), request.getUsername(), request.getPassword(),

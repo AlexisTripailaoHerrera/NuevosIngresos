@@ -8,12 +8,25 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UsuarioDao {
 
     @PersistenceContext
     protected EntityManager em;
+
+    public Optional<Usuario> login(String username, String password){
+        Usuario u = em.createQuery("Select u from Usuario u where u.username = :username and u.password = :password", Usuario.class)
+                        .setParameter("username", username).setParameter("password", password).getSingleResult();
+        return Optional.ofNullable(u);
+    }
+
+    public Optional<Usuario> obtenerUsuario(Long id){
+        Usuario u = em.createQuery("Select u from Usuario u where u.id = :id", Usuario.class).
+                setParameter("id", id).getSingleResult();
+        return Optional.ofNullable(u);
+    }
 
     public List<Usuario> obtenerTodosLosUsuarios() {
         List resultList = em.createQuery("SELECT u FROM Usuario u", Usuario.class)
