@@ -26,19 +26,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<UsuarioVo> login(String username, String password){
-        List<UsuarioVo> datosUsuario = new ArrayList<>();
-        Optional<Usuario> usuario = usuarioDao.login(username, password);
-        if (usuario.isPresent()){
-            Usuario usuarioEncontrado = usuario.get();
-            datosUsuario.add(new UsuarioVo.Builder()
-                    .id(usuarioEncontrado.getId())
-                    .nombreUsuario(usuarioEncontrado.getNombreUsuario())
-                    .apellidoUsuario(usuarioEncontrado.getApellidoUsuario())
-                    .rut(usuarioEncontrado.getRut())
-                    .rutDV(usuarioEncontrado.getRutDV())
-                    .build());
+        List<Usuario> user = usuarioDao.login(username, password);
+        if (!user.isEmpty()) {
+            return user.stream().map(u -> new UsuarioVo.Builder()
+                    .id(u.getId())
+                    .nombreUsuario(u.getNombreUsuario())
+                    .apellidoUsuario(u.getApellidoUsuario())
+                    .rut(u.getRut())
+                    .rutDV(u.getRutDV())
+                    .build()).collect(Collectors.toList());
         }
-        return datosUsuario;
+        return Collections.emptyList();
     }
 
     @Override

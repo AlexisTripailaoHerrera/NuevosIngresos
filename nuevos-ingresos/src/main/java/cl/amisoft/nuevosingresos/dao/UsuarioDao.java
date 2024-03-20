@@ -16,10 +16,14 @@ public class UsuarioDao {
     @PersistenceContext
     protected EntityManager em;
 
-    public Optional<Usuario> login(String username, String password){
-        Usuario u = em.createQuery("Select u from Usuario u where u.username = :username and u.password = :password", Usuario.class)
-                        .setParameter("username", username).setParameter("password", password).getSingleResult();
-        return Optional.ofNullable(u);
+    public List<Usuario> login(String username, String password){
+        List resultList = em.createQuery("Select u from Usuario u where u.username = :username and u.password = :password", Usuario.class)
+                .setParameter("username", username).setParameter("password", password).getResultList();
+
+        if (!resultList.isEmpty()){
+            return resultList;
+        }
+        return Collections.emptyList();
     }
 
     public Optional<Usuario> obtenerUsuario(Long id){
